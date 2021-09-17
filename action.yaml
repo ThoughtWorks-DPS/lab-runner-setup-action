@@ -1,0 +1,23 @@
+name: 'twdps-lab Github hosted runner setup action'
+description: 'Example team hosted runner configuration action'
+inputs:
+  working-directory:
+    description: set working directory; default is .
+    required: false
+    default: '.'
+  install-secrethub:
+    description: use specific secrethub version; latest will use version on runner
+    required: false
+    default: 'false'
+
+runs:
+  using: "composite"
+  steps:
+    - name: install-secrethub
+      working-directory: ${{ inputs.working-directory }}
+      shell: bash
+      run: |
+        if [[ "${{ inputs.install-secrethub-version }}" == "true" ]]; then
+          curl https://apt.secrethub.io | bash
+        fi
+        secrethub --version
