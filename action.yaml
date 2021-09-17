@@ -17,7 +17,8 @@ runs:
       working-directory: ${{ inputs.working-directory }}
       shell: bash
       run: |
-        if [[ "${{ inputs.install-secrethub-version }}" == "true" ]]; then
+        if [[ "${{ inputs.install-secrethub }}" == "true" ]]; then
           curl https://apt.secrethub.io | bash
+          secrethub --version
         fi
-        secrethub --version
+        
