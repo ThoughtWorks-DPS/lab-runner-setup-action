@@ -30,7 +30,7 @@ runs:
       shell: bash
       run: |
         if [[ "${{ inputs.install-awspec }}" == "true" ]]; then
-          gem install awspec
+          sudo gem install awspec
           awspec --version
         fi
         
