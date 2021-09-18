@@ -6,7 +6,11 @@ inputs:
     required: false
     default: '.'
   install-secrethub:
-    description: use specific secrethub version; latest will use version on runner
+    description: install current release version of secrethub
+    required: false
+    default: 'false'
+  install-awspec:
+    description: install current release version of awspec
     required: false
     default: 'false'
 
@@ -20,5 +24,13 @@ runs:
         if [[ "${{ inputs.install-secrethub }}" == "true" ]]; then
           sudo bash -c "curl https://apt.secrethub.io | bash"
           secrethub --version
+        fi
+    - name: install-awspec
+      working-directory: ${{ inputs.working-directory }}
+      shell: bash
+      run: |
+        if [[ "${{ inputs.install-awspec }}" == "true" ]]; then
+          gem install awspec
+          awspec --version
         fi
         
