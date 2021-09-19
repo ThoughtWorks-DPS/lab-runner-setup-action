@@ -38,7 +38,7 @@ runs:
       shell: bash
       run: |
         if [[ "${{ inputs.install-awspec }}" == "true" ]]; then
-          sudo gem install awspec
+          sudo gem install awspec --no-document
           awspec --version
         fi
     - name: install-kubectl
