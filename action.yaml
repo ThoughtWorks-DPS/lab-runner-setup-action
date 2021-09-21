@@ -83,6 +83,7 @@ runs:
       shell: bash
       run: |
         if [[ "${{ inputs.install-bats }}" == "true" ]]; then
-          sudo npm install bats
-          bats --version
+        
+          # sudo npm install -g bats
+          # bats --version
         fi
