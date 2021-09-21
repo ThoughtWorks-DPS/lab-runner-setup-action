@@ -25,6 +25,10 @@ inputs:
     description: install current release version of helm
     required: false
     default: 'false'
+  install-bats:
+    description: install current release version of bats
+    required: false
+    default: 'false'
 
 runs:
   using: "composite"
@@ -73,4 +77,12 @@ runs:
           chmod 700 get_helm.sh
           sudo bash -c "./get_helm.sh"
           helm version
+        fi
+    - name: install-bats
+      working-directory: ${{ inputs.working-directory }}
+      shell: bash
+      run: |
+        if [[ "${{ inputs.install-bats }}" == "true" ]]; then
+          npm install -g bats
+          bats version
         fi
